@@ -8,7 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.11" />
+    <PackageReference Include="SQLite" Version="3.13.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\DAO\" />
   </ItemGroup>
 
 </Project>
