@@ -1,23 +1,23 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:32702",
-      "sslPort": 44348
+      "applicationUrl": "http://localhost:50647/",
+      "sslPort": 44334
     }
   },
   "profiles": {
     "unip_pim_viii_data_access_object": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7147;http://localhost:5147",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:7147;http://localhost:5147",
+      "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",

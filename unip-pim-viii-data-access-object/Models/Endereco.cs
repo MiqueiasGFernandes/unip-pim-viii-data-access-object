@@ -2,23 +2,12 @@
 {
     public class Endereco
     {
-        protected int id;
-        public int cep;
-        public int numero;
-        public string? logradouro;
-        public string? bairro;
-        public string? cidade;
-        public string? estado;
-
-        public Endereco(int id, int cep, int numero, string logradouro, string bairro, string cidade, string estado)
-        {
-            this.id = id;
-            this.numero = numero;
-            this.logradouro = logradouro;
-            this.bairro = bairro;
-            this.cep = cep;
-            this.cidade = cidade;
-            this.estado = estado;
-        }
+        protected int id { get; set; }
+        public int cep { get; set; }
+        public int numero { get; set; }
+        public string? logradouro { get; set; }
+        public string? bairro { get; set; }
+        public string? cidade { get; set; }
+        public string? estado { get; set; }
     }
 }

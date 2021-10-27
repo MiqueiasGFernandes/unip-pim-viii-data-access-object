@@ -2,13 +2,8 @@
 {
     public class TipoTelefone
     {
-        protected int id;
-        public string tipo;
+        protected int id { get; set; }
+        public string? tipo { get; set; }
 
-        public TipoTelefone(int id, string tipo)
-        {
-            this.id = id;
-            this.tipo = tipo;
-        }
     }
 }

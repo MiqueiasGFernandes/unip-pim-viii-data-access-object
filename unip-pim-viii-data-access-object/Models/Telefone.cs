@@ -2,16 +2,10 @@
 {
     public class Telefone
     {
-        protected int id;
-        public TipoTelefone? tipo;
-        public int ddd;
-        public int telefone;
+        protected int id { get; set; }
+        public TipoTelefone? tipo { get; set; }
+        public int ddd { get; set; }
+        public int telefone { get; set; }
 
-        public Telefone(int id, TipoTelefone tipo, int ddd, int telefone) { 
-            this.id = id;
-            this.tipo = tipo;
-            this.ddd = ddd;
-            this.telefone = telefone;
-        }
     }
 }

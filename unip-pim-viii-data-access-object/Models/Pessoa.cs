@@ -2,19 +2,11 @@
 {
     public class Pessoa
     {
-        protected int id;
-        public string? nome;
-        public long cpf;
-        public Endereco? endereco;
-        public Telefone[]? telefones;
+        protected int id { get; set; }
+        public string? nome { get; set; }
+        public long cpf { get; set; }
+        public Endereco? endereco { get; set; }
+        public Telefone[]? telefones { get; set; }
 
-        public Pessoa(int id, string nome, long cpf, Endereco endereco, Telefone[] telefones)
-        {
-            this.id = id;
-            this.nome = nome;
-            this.cpf = cpf;
-            this.endereco = endereco;
-            this.telefones = telefones;
-        }
     }
 }
