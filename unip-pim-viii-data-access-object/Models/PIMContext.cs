@@ -8,6 +8,11 @@ namespace unip_pim_viii_data_access_object.Models
 {
     public partial class PIMContext : DbContext
     {
+        public virtual DbSet<Endereco> Enderecos { get; set; }
+        public virtual DbSet<Pessoa> Pessoas { get; set; }
+        public virtual DbSet<Telefone> Telefones { get; set; }
+        public virtual DbSet<TipoTelefone> TipoTelefones { get; set; }
+
         public PIMContext()
         {
         }
