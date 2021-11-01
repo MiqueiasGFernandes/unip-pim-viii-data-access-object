@@ -12,17 +12,17 @@
     "unip_pim_viii_data_access_object": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "pessoas",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:7147;http://localhost:5147",
+      "applicationUrl": "http://localhost:5147",
       "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "pessoas",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
