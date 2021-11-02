@@ -36,11 +36,11 @@ namespace unip_pim_viii_data_access_object.Controllers
         }
 
         [HttpPut]
-        public bool Put([FromQuery]string id, [FromBody]Pessoa pessoa)
+        public bool Put(Pessoa pessoa)
         {
             try
             {
-                  PessoaDAO.altere(pessoa);
+                PessoaDAO.altere(pessoa);
                 return true;
             }
             catch (Exception e)

@@ -60,13 +60,10 @@
                 return result;
             }
         }
-        public static bool altere(Pessoa p)
+        public static void altere(Pessoa p)
         {
             connection.Pessoas.Update(p);
             connection.SaveChanges();
-
-            return true;
-
         }
     }
 }
