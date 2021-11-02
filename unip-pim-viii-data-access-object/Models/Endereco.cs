@@ -2,10 +2,8 @@
 
 namespace unip_pim_viii_data_access_object.Models
 {
-    public class Endereco
+    public class Endereco: BaseModel
     {
-        [Key]
-        public int id { get; set; }
         public int cep { get; set; }
         public int numero { get; set; }
         public string? logradouro { get; set; }

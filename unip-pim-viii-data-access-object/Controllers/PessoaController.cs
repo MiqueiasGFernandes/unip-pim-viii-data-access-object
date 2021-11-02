@@ -22,15 +22,18 @@ namespace unip_pim_viii_data_access_object.Controllers
             return PessoaDAO.consulta(id);
         }
 
-        //[HttpPost]
-        //public Pessoa Post(Pessoa pessoa)
-        //{
-        //        return PessoaDAO.insere(pessoa);
-        //    } catch (Exception e)
-        //    {
-        //        return null;
-        //    }
-        //}
+        [HttpPost]
+        public bool Post(Pessoa pessoa)
+        {
+            try
+            {
+                PessoaDAO.insere(pessoa);
+                return true;
+            } catch(Exception e)
+            {
+                return false;
+            }
+        }
 
 
     }

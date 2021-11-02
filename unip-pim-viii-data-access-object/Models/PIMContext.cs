@@ -33,6 +33,12 @@ namespace unip_pim_viii_data_access_object.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
+            modelBuilder.Entity<BaseModel>(b => {
+                {
+                    b.HasKey(e => e.id);
+                    b.Property(e => e.id).ValueGeneratedOnAdd();
+                }
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }

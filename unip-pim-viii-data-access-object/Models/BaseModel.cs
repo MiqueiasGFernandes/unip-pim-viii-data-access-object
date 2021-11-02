@@ -2,9 +2,9 @@
 
 namespace unip_pim_viii_data_access_object.Models
 {
-    public class TipoTelefone: BaseModel
+    public class BaseModel
     {
-        public string? tipo { get; set; }
-
+        [Key]
+        public int id { get; set; }
     }
 }
