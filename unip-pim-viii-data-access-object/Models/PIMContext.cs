@@ -33,12 +33,21 @@ namespace unip_pim_viii_data_access_object.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
-            modelBuilder.Entity<BaseModel>(b => {
-                {
-                    b.HasKey(e => e.id);
-                    b.Property(e => e.id).ValueGeneratedOnAdd();
-                }
-            });
+
+            modelBuilder.Entity<Pessoa>()
+                .HasMany<Telefone>(p => p.telefones)
+                .WithOne(t => t.pessoa)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<TipoTelefone>()
+                .HasMany<Telefone>(tip => tip.telefones)
+                .WithOne(t => t.tipo)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Endereco>()
+                .HasMany<Pessoa>(e => e.pessoas)
+                .WithOne(p => p.endereco)
+                .OnDelete(DeleteBehavior.Cascade);
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -35,6 +35,33 @@ namespace unip_pim_viii_data_access_object.Controllers
             }
         }
 
+        [HttpPut]
+        public bool Put([FromQuery]string id, [FromBody]Pessoa pessoa)
+        {
+            try
+            {
+                  PessoaDAO.altere(pessoa);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        [HttpDelete]
+        public bool Delete([FromQuery] string id)
+        {
+            try
+            {
+                PessoaDAO.exclua(id);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
 
     }
 }

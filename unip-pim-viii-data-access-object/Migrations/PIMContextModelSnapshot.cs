@@ -20,27 +20,12 @@ namespace unip_pim_viii_data_access_object.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("unip_pim_viii_data_access_object.Models.BaseModel", b =>
+            modelBuilder.Entity("unip_pim_viii_data_access_object.Models.Endereco", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("BaseModel");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("BaseModel");
-                });
-
-            modelBuilder.Entity("unip_pim_viii_data_access_object.Models.Endereco", b =>
-                {
-                    b.HasBaseType("unip_pim_viii_data_access_object.Models.BaseModel");
 
                     b.Property<string>("bairro")
                         .HasColumnType("nvarchar(max)");
@@ -60,12 +45,17 @@ namespace unip_pim_viii_data_access_object.Migrations
                     b.Property<int>("numero")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("Endereco");
+                    b.HasKey("id");
+
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("unip_pim_viii_data_access_object.Models.Pessoa", b =>
                 {
-                    b.HasBaseType("unip_pim_viii_data_access_object.Models.BaseModel");
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<long>("cpf")
                         .HasColumnType("bigint");
@@ -76,19 +66,24 @@ namespace unip_pim_viii_data_access_object.Migrations
                     b.Property<string>("nome")
                         .HasColumnType("nvarchar(max)");
 
+                    b.HasKey("id");
+
                     b.HasIndex("enderecoid");
 
-                    b.HasDiscriminator().HasValue("Pessoa");
+                    b.ToTable("Pessoas");
                 });
 
             modelBuilder.Entity("unip_pim_viii_data_access_object.Models.Telefone", b =>
                 {
-                    b.HasBaseType("unip_pim_viii_data_access_object.Models.BaseModel");
-
-                    b.Property<int?>("Pessoaid")
-                        .HasColumnType("int");
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ddd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("pessoaid")
                         .HasColumnType("int");
 
                     b.Property<int>("telefone")
@@ -97,46 +92,69 @@ namespace unip_pim_viii_data_access_object.Migrations
                     b.Property<int?>("tipoid")
                         .HasColumnType("int");
 
-                    b.HasIndex("Pessoaid");
+                    b.HasKey("id");
+
+                    b.HasIndex("pessoaid");
 
                     b.HasIndex("tipoid");
 
-                    b.HasDiscriminator().HasValue("Telefone");
+                    b.ToTable("Telefones");
                 });
 
             modelBuilder.Entity("unip_pim_viii_data_access_object.Models.TipoTelefone", b =>
                 {
-                    b.HasBaseType("unip_pim_viii_data_access_object.Models.BaseModel");
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("tipo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("TipoTelefone");
+                    b.HasKey("id");
+
+                    b.ToTable("TipoTelefones");
                 });
 
             modelBuilder.Entity("unip_pim_viii_data_access_object.Models.Pessoa", b =>
                 {
                     b.HasOne("unip_pim_viii_data_access_object.Models.Endereco", "endereco")
-                        .WithMany()
-                        .HasForeignKey("enderecoid");
+                        .WithMany("pessoas")
+                        .HasForeignKey("enderecoid")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("endereco");
                 });
 
             modelBuilder.Entity("unip_pim_viii_data_access_object.Models.Telefone", b =>
                 {
-                    b.HasOne("unip_pim_viii_data_access_object.Models.Pessoa", null)
+                    b.HasOne("unip_pim_viii_data_access_object.Models.Pessoa", "pessoa")
                         .WithMany("telefones")
-                        .HasForeignKey("Pessoaid");
+                        .HasForeignKey("pessoaid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("unip_pim_viii_data_access_object.Models.TipoTelefone", "tipo")
-                        .WithMany()
-                        .HasForeignKey("tipoid");
+                        .WithMany("telefones")
+                        .HasForeignKey("tipoid")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("pessoa");
 
                     b.Navigation("tipo");
                 });
 
+            modelBuilder.Entity("unip_pim_viii_data_access_object.Models.Endereco", b =>
+                {
+                    b.Navigation("pessoas");
+                });
+
             modelBuilder.Entity("unip_pim_viii_data_access_object.Models.Pessoa", b =>
+                {
+                    b.Navigation("telefones");
+                });
+
+            modelBuilder.Entity("unip_pim_viii_data_access_object.Models.TipoTelefone", b =>
                 {
                     b.Navigation("telefones");
                 });

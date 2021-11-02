@@ -2,7 +2,7 @@
 
 namespace unip_pim_viii_data_access_object.Models
 {
-    public class BaseModel
+    public abstract class BaseModel
     {
         [Key]
         public int id { get; set; }

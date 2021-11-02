@@ -13,12 +13,21 @@
             return connection;
         }
 
-        public static bool exclua(Pessoa p)
+        public static bool exclua(string id)
         {
             try
             {
-                connection.Pessoas.Remove(p);
-                connection.SaveChanges();
+
+                foreach (Pessoa current in connection.Pessoas.ToList())
+                {
+                    if (current.id == Int32.Parse(id))
+                    {
+                        connection.Pessoas.Remove(current);
+                        connection.SaveChanges();
+                        break;
+                    }
+                }
+
 
                 return true;
             }
@@ -27,20 +36,10 @@
                 return false;
             }
         }
-        public static bool insere(Pessoa p)
+        public static void insere(Pessoa p)
         {
-            try
-            {
-                connection.Pessoas.Add(p);
-                connection.SaveChanges();
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-
-            }
+            connection.Pessoas.Add(p);
+            connection.SaveChanges();
         }
 
         public static IEnumerable<Pessoa> consulta(string? id)
@@ -63,17 +62,11 @@
         }
         public static bool altere(Pessoa p)
         {
-            try
-            {
-                connection.Pessoas.Update(p);
-                connection.SaveChanges();
+            connection.Pessoas.Update(p);
+            connection.SaveChanges();
 
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            return true;
+
         }
     }
 }

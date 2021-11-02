@@ -2,7 +2,7 @@
 
 namespace unip_pim_viii_data_access_object.Migrations
 {
-    public partial class initial : Migration
+    public partial class addcascade : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,7 +55,7 @@ namespace unip_pim_viii_data_access_object.Migrations
                         column: x => x.enderecoid,
                         principalTable: "Enderecos",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,25 +65,25 @@ namespace unip_pim_viii_data_access_object.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     tipoid = table.Column<int>(type: "int", nullable: true),
+                    pessoaid = table.Column<int>(type: "int", nullable: false),
                     ddd = table.Column<int>(type: "int", nullable: false),
-                    telefone = table.Column<int>(type: "int", nullable: false),
-                    Pessoaid = table.Column<int>(type: "int", nullable: true)
+                    telefone = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Telefones", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Telefones_Pessoas_Pessoaid",
-                        column: x => x.Pessoaid,
+                        name: "FK_Telefones_Pessoas_pessoaid",
+                        column: x => x.pessoaid,
                         principalTable: "Pessoas",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Telefones_TipoTelefones_tipoid",
                         column: x => x.tipoid,
                         principalTable: "TipoTelefones",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -92,9 +92,9 @@ namespace unip_pim_viii_data_access_object.Migrations
                 column: "enderecoid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Telefones_Pessoaid",
+                name: "IX_Telefones_pessoaid",
                 table: "Telefones",
-                column: "Pessoaid");
+                column: "pessoaid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Telefones_tipoid",
