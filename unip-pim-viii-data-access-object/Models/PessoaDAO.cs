@@ -62,7 +62,9 @@
         }
         public static void altere(Pessoa p)
         {
-            connection.Pessoas.Update(p);
+            var entry = connection.Pessoas.Find(p.id);
+            connection.Entry(entry).CurrentValues.SetValues(p);
+
             connection.SaveChanges();
         }
     }
